@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>91破解</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <br>
 
     <!--embed需要flash格式的视频,所以不能播放,可删-->
-    <video id="mainVideo" width="auto" height="auto" src="" controls>您的浏览器不支持 video 标签。</video>
+    <video id="mainVideo" src="" controls style="max-width: 100%;max-height: 100%;">您的浏览器不支持 video 标签。</video>
     <br/>
 
     <a id="filmPage" href="http://91.91p17.space//player_vid.php?VID=102331" target="_blank">影片主页</a>
@@ -40,7 +41,7 @@
     <p class="text-info" align="center" style="color: #EEEEEE;">ps:可直接粘贴图片地址到影片编号</p>
 </div>
 
-<iframe id="mainFrame" src="http://91.91p17.space/index.php" width="100%" height="2000px" frameborder="0"></iframe>
+<iframe id="mainFrame" src="http://91.91p17.space/index.php" width="100%" height="5250px" frameborder="0" scrolling="auto" ></iframe>
 
 <script type="text/javascript">
     if (!Number(localStorage.vid) > 0) {
@@ -82,12 +83,12 @@
     function changePage(){
         if(homeOn){
             homeOn=false;
-            mainFrame.src="http://91.91p17.space/index.php"
-            buttonD.value="切换至影片主页"
+            mainFrame.src=filmPage.href;
+            buttonD.value="切换至首页"
         }else{
             homeOn=true;
-            mainFrame.src=filmPage.href;
-            buttonD.value="切换至首页";
+            mainFrame.src="http://91.91p17.space/index.php";
+            buttonD.value="切换至影片主页";
         }
     }
 

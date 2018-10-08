@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>91影片列页</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -48,8 +49,9 @@
 
     //服务器不支持跨域,status返回0
     function clearVedio(){
-        //加载失败删除节点及播放器 手机qq浏览器不支持,不知道是dom的原因还是事件的原因
-        document.getElementById("container").removeChild(this.previousSibling);
+        //加载失败删除节点及播放器 手机qq浏览器不支持,不知道是dom还是事件的原因
+        document.getElementById("container").removeChild(this.nextSibling);
+        document.getElementById("container").removeChild(this.nextSibling);
         document.getElementById("container").removeChild(this);
     }
 
@@ -95,27 +97,29 @@
             newNode.setAttribute("src", "http://68.235.41.51/thumb/3_"+ j +".jpg");
             document.getElementById("container").appendChild(newNode);
 
+            //影片载入
+            newNode = document.createElement("video");
+            newNode.setAttribute("src", "http://192.240.120.34//mp43/"+ j +".mp4");
+            newNode.setAttribute("width", "150px");
+            newNode.setAttribute("height", "120px");
+            newNode.setAttribute("controls", "true");
+            newNode.setAttribute("preload", "metadata");
+            newNode.setAttribute("style","position:relative;bottom:-60px;")
+            newNode.onerror = clearVedio;
+            document.getElementById("container").appendChild(newNode);
+
             newNode = document.createElement("a");
             newNode.setAttribute("href", "http://92.91p22.space//player_vid.php?VID="+ j);
             newNode.setAttribute("target", "_blank");
-            textNode = document.createTextNode("影片主页");
+            textNode = document.createTextNode("影片主页 ");
             newNode.appendChild(textNode);
             document.getElementById("container").appendChild(newNode);
 
             newNode = document.createElement("a");
             newNode.setAttribute("href", "http://192.240.120.34//mp43/"+ j +".mp4");
             newNode.setAttribute("target", "_blank");
-            textNode = document.createTextNode("影片链接 ");
+            textNode = document.createTextNode("影片链接");
             newNode.appendChild(textNode);
-            document.getElementById("container").appendChild(newNode);
-
-            //影片载入
-            newNode = document.createElement("video");
-            newNode.setAttribute("src", "http://192.240.120.34//mp43/"+ j +".mp4");
-            newNode.setAttribute("width", "150px");
-            newNode.setAttribute("height", "150px");
-            newNode.setAttribute("preload", "metadata");
-            newNode.onerror = clearVedio;
             document.getElementById("container").appendChild(newNode);
             newNode = document.createElement("br");
             document.getElementById("container").appendChild(newNode);
